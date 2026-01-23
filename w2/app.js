@@ -2,8 +2,8 @@ console.log('Hello from app.js! Your JavaScript is connected and running!');
 // --- Part 1: Select HTML Elements ----
 // We use document.getElementById() to get a reference to an element by its unique ID.
 // We store these references in 'const' variables because the elements themselves won't change.
-const messageDisplayElement = document.getElementById("output-message");
-const updateButton = document.getElementById("update-button");
+const totalDisplayElement = document.getElementById("total-display");
+const addItemButton = document.getElementById("add-item-btn");
 
 //These variables will change as the user interacts with the page.
 let userName = 'Mason';
@@ -24,13 +24,13 @@ const handleButtonClick = function() {
         // We can even change the style of an HTML element directly with JavaScript!
         // Change text color
         message += ' WOW, you are a super clicker!';
-        messageDisplayElement.style.color = 'purple';
+        addItemButton.style.color = 'purple';
     } else {
-        messageDisplayElement.style.color = '#333';
+        addItemButton.style.color = '#333';
     }
     // Update the text content of our paragraph element on the page.
     // This is how JavaScript makes changes visible on the web page!
-        messageDisplayElement.textContent = message;
+        addItemButton.textContent = message;
         
     console.log(`Button Clicked! Current click count: ${clickCount}`);
 };
@@ -46,7 +46,7 @@ handleButtonClick();
     // Attach an event listener to our 'updateButton.
     // When 'updateButton' receives a 'click' event, the 'handleButtonClick' function will execute.
 
-    updateButton.addEventListener('click', handleButtonClick);
+    addItemButton.addEventListener('click', handleButtonClick);
 
-    messageDisplayElement.textContent = `Welcome, ${userName}! Click the button below to start counting`;
+    addItemButton.textContent = `Welcome, ${userName}! Click the button below to start counting`;
 })
