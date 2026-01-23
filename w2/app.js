@@ -9,7 +9,7 @@ const addItemButton = document.getElementById("add-item-btn");
 let totalCost = 0;
 const itemPrice = 15;
 
-// --- Part 2: Define a Function that Reacts to a Click---
+// -- Part 2: Define a Function that Reacts to a Click--
 // A function is a block of code designed to perform a particular task.
 const handleButtonClick = function() {
     // clickCount = clickCount + 1;
