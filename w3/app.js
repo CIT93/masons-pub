@@ -1,25 +1,41 @@
 console.log('Hello from app.js! Your JavaScript is connected and running!');
 
-// Import everything
-import * as orderHandler from './order-handler.js';
+import * as orderHandler from "./order-handler.js";
 
-// Select elements
+// Reference to main form element
 const orderForm = document.getElementById('order-form');
-const orderSummary = document.getElementById('order-summary');
 
-// Submit handler
-const handleOrderSubmit = function (event) {
-  event.preventDefault();
+// Reference to order summary
+const orderSummaryInfo =
+  document.getElementById('order-summary-info') ||
+  document.getElementById('order-summary');
 
-  const orderData = orderHandler.getOrderInputs();
 
-  orderSummary.textContent = `Ordered ${orderData.qty} ${orderData.size} T-Shirt(s). Gift Wrap: ${orderData.giftWrap}`;
+// Converts true/false to Yes/No
+const giftWrappingRequest = function (formData) {
+    if (formData.giftwrap) {
+        return "Yes";
+    } else {
+        return "No";
+    }
 };
 
-// Initiate function
+// Handles form submission event
+const handleOrderSubmit = function (event) {
+    event.preventDefault();
+
+    const formData = orderHandler.getOrderInputs();
+
+    const message = `Ordered ${formData.qty} ${formData.size} T-Shirt(s). You requested giftwrapping: ${giftWrappingRequest(formData)}`;
+
+    orderSummaryInfo.textContent = message;
+    console.log(message);
+};
+
+// Initiates function
 const init = function () {
-  console.log('App Initialized');
-  orderForm.addEventListener('submit', handleOrderSubmit);
+    console.log("App Initialized");
+    orderForm.addEventListener('submit', handleOrderSubmit);
 };
 
 document.addEventListener('DOMContentLoaded', init);
