@@ -1,7 +1,7 @@
 console.log('Hello from app.js! Your JavaScript is connected and running!');
 
 // Imports all exported helpers from the form-handler module.
-import * as formHandler from './form-handler.js';
+import * as formHandler from './order-handler.';
 
 // References the main carbon footprint form.
 const carbonFootprintForm = document.getElementById('carbonFootprintForm');
