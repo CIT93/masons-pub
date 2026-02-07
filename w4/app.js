@@ -2,6 +2,7 @@ console.log("Hello from app.js! Your JavaScript is connected and running!");
 
 import * as orderHandler from "./order-handler.js";
 import * as priceCalculator from "./price-calculator.js";
+import * as resultsDisplay from "./results-display.js";
 
 // Reference to main form element
 const orderForm = document.getElementById("order-form");
@@ -28,6 +29,8 @@ const handleOrderSubmit = function (event) {
   };
 
   orders.push(newOrder);
+
+  resultsDisplay.showOrderResults(newOrder);
 
   orderSummaryInfo.textContent = `Latest order: ${newOrder.qty} ${newOrder.size} (Giftwrap: ${
     newOrder.giftwrap ? "Yes" : "No"
