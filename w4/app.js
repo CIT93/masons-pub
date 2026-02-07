@@ -1,41 +1,45 @@
-console.log('Hello from app.js! Your JavaScript is connected and running!');
+console.log("Hello from app.js! Your JavaScript is connected and running!");
 
 import * as orderHandler from "./order-handler.js";
+import * as priceCalculator from "./price-calculator.js";
 
 // Reference to main form element
-const orderForm = document.getElementById('order-form');
+const orderForm = document.getElementById("order-form");
 
 // Reference to order summary
 const orderSummaryInfo =
-  document.getElementById('order-summary-info') ||
-  document.getElementById('order-summary');
+  document.getElementById("order-summary-info") ||
+  document.getElementById("order-summary");
 
-
-// Converts true/false to Yes/No
-const giftWrappingRequest = function (formData) {
-    if (formData.giftwrap) {
-        return "Yes";
-    } else {
-        return "No";
-    }
-};
+// Step 3: Array to store orders
+const orders = [];
 
 // Handles form submission event
 const handleOrderSubmit = function (event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const formData = orderHandler.getOrderInputs();
+  const orderData = orderHandler.getOrderInputs();
+  const calculatedPrice = priceCalculator.calculateTotal(orderData);
 
-    const message = `Ordered ${formData.qty} ${formData.size} T-Shirt(s). You requested giftwrapping: ${giftWrappingRequest(formData)}`;
+  const newOrder = {
+    ...orderData,
+    ...calculatedPrice,
+    timestamp: new Date().toISOString(),
+  };
 
-    orderSummaryInfo.textContent = message;
-    console.log(message);
+  orders.push(newOrder);
+
+  orderSummaryInfo.textContent = `Latest order: ${newOrder.qty} ${newOrder.size} (Giftwrap: ${
+    newOrder.giftwrap ? "Yes" : "No"
+  }) Total: $${newOrder.totalPrice}`;
+
+  console.log(orders);
 };
 
-// Initiates function
+// Initializes function
 const init = function () {
-    console.log("App Initialized");
-    orderForm.addEventListener('submit', handleOrderSubmit);
+  console.log("App Initialized");
+  orderForm.addEventListener("submit", handleOrderSubmit);
 };
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener("DOMContentLoaded", init);
