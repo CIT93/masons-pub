@@ -41,11 +41,10 @@ const init = function () {
   console.log("App Initialized");
   
   const loadedOrders = orderStorage.loadOrders();
-  console.log("Loaded orders:", loadedOrders);
 
   if (loadedOrders.length > 0) {
     orders.push(...loadedOrders);
-
+    console.log("Orders loaded");
   }
 
   orderForm.addEventListener("submit", handleOrderSubmit);
