@@ -3,6 +3,7 @@ console.log("Hello from app.js! Your JavaScript is connected and running!");
 import * as orderHandler from "./order-handler.js";
 import * as priceCalculator from "./price-calculator.js";
 import * as resultsDisplay from "./results-display.js";
+import * as orderStorage from './order-storage.js';
 
 // Reference to main form element
 const orderForm = document.getElementById("order-form");
@@ -38,6 +39,15 @@ const handleOrderSubmit = function (event) {
 // Initializes function
 const init = function () {
   console.log("App Initialized");
+  
+  const loadedOrders = orderStorage.loadOrders();
+  console.log("Loaded orders:", loadedOrders);
+
+  if (loadedOrders.length > 0) {
+    orders.push(...loadedOrders);
+
+  }
+
   orderForm.addEventListener("submit", handleOrderSubmit);
 };
 
