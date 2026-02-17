@@ -32,10 +32,6 @@ const handleOrderSubmit = function (event) {
 
   resultsDisplay.showOrderResults(newOrder);
 
-  orderSummaryInfo.textContent = `Latest order: ${newOrder.qty} ${newOrder.size} (Giftwrap: ${
-    newOrder.giftwrap ? "Yes" : "No"
-  }) Total: $${newOrder.totalPrice}`;
-
   console.log(orders);
 };
 
