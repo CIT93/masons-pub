@@ -1,5 +1,6 @@
 console.log("Hello from app.js! Your JavaScript is connected and running!");
 
+import * as orderList from "./order-list.js";
 import * as orderHandler from "./order-handler.js";
 import * as priceCalculator from "./price-calculator.js";
 import * as resultsDisplay from "./results-display.js";
@@ -7,11 +8,6 @@ import * as orderStorage from './order-storage.js';
 
 // Reference to main form element
 const orderForm = document.getElementById("order-form");
-
-// Reference to order summary
-const orderSummaryInfo =
-  document.getElementById("order-summary-info") ||
-  document.getElementById("order-summary");
 
 // Step 3: Array to store orders
 const orders = [];
@@ -32,7 +28,7 @@ const handleOrderSubmit = function (event) {
   orders.push(newOrder);
   orderStorage.saveOrders(orders);
 
-  resultsDisplay.showOrderResults(newOrder);
+  orderList.renderOrders(orders);
 
   console.log(orders);
 };
@@ -46,6 +42,7 @@ const init = function () {
   if (loadedOrders.length > 0) {
     orders.push(...loadedOrders);
     console.log("Orders loaded");
+    orderList.renderOrders(orders);
   }
 
   orderForm.addEventListener("submit", handleOrderSubmit);

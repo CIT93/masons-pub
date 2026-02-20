@@ -7,11 +7,10 @@ export function renderOrders(orders) {
     const row = document.createElement("tr");
 
     row.innerHTML = `
-      <td>${new Date(order.date).toLocaleString()}</td>
+      <td>${new Date(order.timestamp).toLocaleString()}</td>
       <td>${order.qty}</td>
       <td>${order.size}</td>
-      <td>$${order.total}</td>
-      <td></td>
+      <td>$${order.totalPrice ?? order.total ?? order.price ?? ""}</td>
     `;
 
     tbody.appendChild(row);
