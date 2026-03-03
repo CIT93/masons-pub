@@ -40,19 +40,17 @@ export const generateUniqueId = function () {
 // @returns {Array} An array of carbon footprint entry objects. Returns an empty array if no data is found or if parsing fails.
 
 export const loadEntries = function() {
-    try {
-        const dataString = localStorage.getItem(LOCAL_STORAGE_KEY);
-        // If data exists, parse the JSON string back into a JavaScript array/object.
-        if (dataString) {
-            return JSON.parse(dataString);
-        }
-        // If no data is found in localStorage, return an empty array.
-        return [];
-        // In case of corrupted data, it's good practice to clear it to prevent continuous errors.
-    } catch (e) {
-        console.error(`Error loading entries from localStorage: ${e}`);
-        localStorage.removeItem(LOCAL_STORAGE_KEY);
+  try {
+    const dataString = localStorage.getItem(LOCALSTORE_KEY); // <-- typo on purpose
+    if (dataString) {
+      return JSON.parse(dataString);
     }
+    return [];
+  } catch (e) {
+    console.error(`Error loading entries from localStorage: ${e}`);
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    return [];
+  }
 };
 // Clear all data from localStorage for our app.
 // This function removes the specific key used by our app from localStorage.

@@ -54,6 +54,7 @@ const calculateFoodPackagingPoints = function(foodPackaging) {
     case 'fresh': return 2;
     default: return 0;
   }
+  };
 
 // This module contains the core logic for calculating carbon footprint points.
 // Calculate points for each category using our dedicated helper functions
