@@ -41,7 +41,7 @@ export const generateUniqueId = function () {
 
 export const loadEntries = function() {
   try {
-    const dataString = localStorage.getItem(LOCALSTORE_KEY); // <-- typo on purpose
+    const dataString = localStorage.getItem(LOCAL_STORAGE_KEY); 
     if (dataString) {
       return JSON.parse(dataString);
     }

@@ -43,10 +43,6 @@ const calculateFoodDietPoints = function(dietType) {
   }
 };
 
-// Calculates points for Food Packaging based on WikiHow Method 1.
-// @param {string} foodPackaging - Type of food packaging ('prepackaged', 'balanced', 'fresh').
-// @returns {number} Points for food packaging.
-
 const calculateFoodPackagingPoints = function(foodPackaging) {
   switch (foodPackaging) {
     case 'prepackaged': return 12;
@@ -56,17 +52,6 @@ const calculateFoodPackagingPoints = function(foodPackaging) {
   }
   };
 
-// This module contains the core logic for calculating carbon footprint points.
-// Calculate points for each category using our dedicated helper functions
-// This function orchestrates calls to the smaller, specialized calculation functions.
-// It exports 'calculateFootprint' so other modules (like app.js) can use it.
-// Return the breakdown of points for each category, and the total (for now we will just setup a key and return it's value)
-// @param {Object} data - An object containing input values for the categories:
-// householdMembers (number)
-// homeSquareFootage (number)
-// isApartment (boolean)
-// dietType (string)
-// foodPackaging (string)
 
 export const calculateFootprint = function(data) {
   console.log('inside calculateFootprint function in the calculator.js module');
@@ -74,10 +59,10 @@ export const calculateFootprint = function(data) {
   const homeSizePoints = calculateHomeSizePoints(data.homeSquareFootage, data.isApartment);
   const dietTypePoints = calculateFoodDietPoints(data.dietType);
   const foodPackagingPoints = calculateFoodPackagingPoints(data.foodPackaging);
-  
-  // Sum up all category points for the total footprint
-  const totalFootprintPoints = householdPoints + homeSizePoints + dietTypePoints + foodPackagingPoints;
-  
+
+  // LOGIC BUG: householdPoints is accidentally left out of the total
+  const totalFootprintPoints = homeSizePoints + dietTypePoints + foodPackagingPoints;
+
   return {
     totalFootprint: totalFootprintPoints,
     householdFootprint: householdPoints,
