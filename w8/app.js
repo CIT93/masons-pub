@@ -29,24 +29,38 @@ const handleOrderSubmit = function (event) {
   orders.push(newOrder);
   orderStorage.saveOrders(orders);
 
-  orderList.renderOrders(orders);
+  orderList.renderOrders(orders, {
+    onDelete: handleDelete,
+    onEdit: handleEdit
+  });
 
-  console.log(orders);
-};
+    console.log(orders);
+  };
 
-// Initializes function
-const init = function () {
-  console.log("App Initialized");
-  
-  const loadedOrders = orderStorage.loadOrders();
+  const handleDelete = function(id) {
+    console.log("App.js: Requesting delete for order", id);
+  };
 
-  if (loadedOrders.length > 0) {
-    orders.push(...loadedOrders);
-    console.log("Orders loaded");
-    orderList.renderOrders(orders);
-  }
+  const handleEdit = function(id) {
+    console.log("App.js: Requesting edit for order", id);
+  };
 
-  orderForm.addEventListener("submit", handleOrderSubmit);
-};
+  // Initializes function
+  const init = function () {
+    console.log("App Initialized");
+    
+    const loadedOrders = orderStorage.loadOrders();
 
-document.addEventListener("DOMContentLoaded", init);
+    if (loadedOrders.length > 0) {
+      orders.push(...loadedOrders);
+      console.log("Orders loaded");
+      orderList.renderOrders(orders, {
+      onDelete: handleDelete,
+      onEdit: handleEdit
+      });
+    }
+
+    orderForm.addEventListener("submit", handleOrderSubmit);
+  };
+
+  document.addEventListener("DOMContentLoaded", init);

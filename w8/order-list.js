@@ -1,3 +1,5 @@
+let moduleCallbacks = {};
+
 const tbody = document.getElementById("order-table-body");
 
 const tableBody = document.getElementById('order-table-body');
@@ -12,12 +14,18 @@ tableBody.addEventListener('click', function(event) {
     // there will be no ID. So we stop the function immediately.
     if (!id) return;
 
-    // 3. Temporary Test: Log the ID to prove it works!
-    console.log("Clicked button with ID:", id); 
+    if (target.classList.contains("delete-btn") && moduleCallbacks.onDelete) {
+      moduleCallbacks.onDelete(id);
+    }
+
+    if (target.classList.contains("edit-btn") && moduleCallbacks.onEdit) {
+      moduleCallbacks.onEdit(id);
+    }
 });
 
-export function renderOrders(orders) {
-  tbody.innerHTML = "";
+  export function renderOrders(orders, callbacks) {
+    moduleCallbacks = callbacks;
+    tbody.innerHTML = "";
 
   orders.forEach(order => {
     const row = document.createElement("tr");
