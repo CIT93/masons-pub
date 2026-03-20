@@ -55,6 +55,15 @@ const handleOrderSubmit = function (event) {
 
   const handleEdit = function(id) {
     console.log("App.js: Requesting edit for order", id);
+
+    const order = orders.find(order => order.id === id);
+
+    if (!order) return;
+
+    document.getElementById("qty").value = order.qty;
+    document.querySelector(`input[name="size"][value="${order.size}"]`).checked = true;
+    document.getElementById("gift-wrap").checked = order.giftwrap;
+    document.getElementById("order-id").value = order.id;
   };
 
   // Initializes function
