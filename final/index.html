@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Game Soundtrack Vibe Should I Play?</title>
+
+  <script type="module" src="app.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="container">
+    <h1>What Game Soundtrack Vibe Should I Play?</h1>
+    <p>
+      Pick the type of game you’re playing, your focus level, and your energy level.
+      Then get a soundtrack vibe recommendation.
+    </p>
+
+    <form id="soundtrackForm" novalidate>
+      <input type="hidden" id="entryId" name="entryId" />
+
+      <fieldset>
+        <legend>Game Type</legend>
+        <div class="form-group radio-group">
+          <label for="gameFps">
+            <input type="radio" id="gameFps" name="gameType" value="fps" />
+            FPS / Competitive
+          </label>
+
+          <label for="gameRpg">
+            <input type="radio" id="gameRpg" name="gameType" value="rpg" />
+            RPG / Story
+          </label>
+
+          <label for="gameGrind">
+            <input type="radio" id="gameGrind" name="gameType" value="grind" />
+            Grinding / Farming
+          </label>
+
+          <label for="gameChill">
+            <input type="radio" id="gameChill" name="gameType" value="chill" />
+            Chill / Casual
+          </label>
+        </div>
+        <span id="gameTypeError" class="error-message"></span>
+      </fieldset>
+
+      <fieldset>
+        <legend>Focus Level</legend>
+        <div class="form-group">
+          <label for="focusLevel">Focus Level</label>
+          <input type="range" id="focusLevel" name="focusLevel" min="0" max="10" value="0" />
+          <p>Current Value: <span id="focusValue">0</span></p>
+          <span id="focusLevelError" class="error-message"></span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Energy Level</legend>
+        <div class="form-group">
+          <label for="energyLevel">Energy Level</label>
+          <input type="range" id="energyLevel" name="energyLevel" min="0" max="10" value="0" />
+          <p>Current Value: <span id="energyValue">0</span></p>
+          <span id="energyLevelError" class="error-message"></span>
+        </div>
+      </fieldset>
+      
+      <fieldset>
+        <legend>Lyrics Preference</legend>
+        <div class="form-group">
+          <label for="lyricsYes">
+            <input type="radio" id="lyricsYes" name="lyrics" value="yes" />
+            Yes Lyrics
+          </label>
+
+          <label for="lyricsNo">
+            <input type="radio" id="lyricsNo" name="lyrics" value="no" />
+            No Lyrics
+          </label>
+          <span id="lyricsError" class="error-message"></span>
+        </div>
+      </fieldset>
+
+      <button type="submit" id="submitButton">Get Soundtrack Vibe</button>
+      <button type="button" id="clearFormButton" class="secondary-button">Clear Form</button>
+    </form>
+
+    <section id="results" class="results-container" style="display: none;">
+      <h2>Recommendation:</h2>
+      <p id="recommendationOutput" class="highlight-total">None yet</p>
+
+      <div id="breakdown">
+        <h3>Your Inputs:</h3>
+        <ul>
+          <li id="gameTypeOutput">Game Type: N/A</li>
+          <li id="focusLevelOutput">Focus Level: N/A</li>
+          <li id="energyLevelOutput">Energy Level: N/A</li>
+          <li id="lyricsOutput">Lyrics: N/A</li>
+        </ul>
+      </div>
+    </section>
+    <table id="historyTable" class="history-table" style="display: none;">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Game Type</th>
+        <th>Focus Level</th>
+        <th>Energy Level</th>
+        <th>Lyrics</th>
+        <th>Recommendation</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="history-list"></tbody>
+  </table>
+  <p id="noEntriesMessage" style="display: none;">No entries saved yet.</p>
+  </main>
+</body>
+</html>
